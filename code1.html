@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>골프경기지도과학과 | 한국골프과학기술대학교 (KGTech)</title>
+  
+  <!-- Favicon / Meta -->
+  <meta name="description" content="한국골프과학기술대학교 골프경기지도과학과 - KPGA/KLPGA 투어프로 및 첨단 골프 스포츠지도자 양성의 최고 명문"/>
+  <meta name="keywords" content="한국골프과학기술대학교, 골프경기지도과학과, 투어프로, KLPGA, KPGA, 골프아카데미, 트랙맨스윙분석"/>
+
+  <!-- Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+  
+  <!-- Pretendard Font (한글 최적화 고가독성 웹폰트) -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"/>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Pretendard', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+            montserrat: ['Montserrat', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              DEFAULT: '#003527',
+              dark: '#002117',
+              light: '#0b513d',
+              container: '#064e3b',
+              fixed: '#b0f0d6',
+              dim: '#95d3ba'
+            },
+            secondary: {
+              DEFAULT: '#006c49',
+              emerald: '#10b981',
+              container: '#6cf8bb',
+              fixed: '#6ffbbe',
+              dim: '#4edea3',
+              dark: '#005236'
+            },
+            accent: {
+              lime: '#84cc16',
+              neon: '#acf847',
+              dim: '#91db2a'
+            },
+            surface: {
+              DEFAULT: '#faf8ff',
+              dim: '#d2d9f4',
+              bright: '#ffffff',
+              container: '#f1f5f9',
+              low: '#f8fafc',
+              lowest: '#ffffff',
+              high: '#e2e8f0'
+            }
+          },
+          boxShadow: {
+            'card-hover': '0 22px 35px -10px rgba(0, 53, 39, 0.18)',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* 기본 스무스 스크롤 및 폰트 렌더링 최적화 */
+    html {
+      scroll-behavior: smooth;
+      font-family: 'Pretendard', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    }
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+      color: #1e293b;
+      background-color: #f8fafc;
+    }
+    
+    /* 스티키 서브네비게이션 액티브 효과 */
+    .subnav-link {
+      position: relative;
+      transition: all 0.2s ease-in-out;
+    }
+    .subnav-link:hover, .subnav-link.active {
+      color: #006c49;
+    }
+    .subnav-link:hover::after, .subnav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background-color: #006c49;
+      border-radius: 2px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans">
+
+  <!-- =========================================================================
+       1. HEADER (대학 메인 홈 index.html로 바로 연결 & 통일된 UI)
+       ========================================================================= -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+    <!-- Top Utility Bar (글자 크기 14px로 가독성 확대) -->
+    <div class="bg-slate-100/90 border-b border-slate-200/80">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between text-sm">
+        
+        <div class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-1.5 font-bold text-primary px-2.5 py-0.5 rounded-full bg-primary-fixed/40 text-xs">
+            <span class="material-symbols-outlined text-sm text-secondary animate-pulse">sports_golf</span>
+            특성화 학부
+          </span>
+          <span class="text-slate-700 font-semibold text-sm truncate max-w-xs sm:max-w-md">
+            한국골프과학기술대학교 DIVISION 01 골프경기지도과학과
+          </span>
+        </div>
+
+        <div class="flex items-center gap-4 sm:gap-6">
+          <div class="hidden md:flex items-center gap-4 text-sm font-semibold text-slate-600">
+            <!-- 대학 메인 홈으로 바로가기 링크 -->
+            <a href="index.html" class="hover:text-primary transition-colors flex items-center gap-1 text-slate-800 font-bold" title="대학 메인홈으로 이동">
+              <span class="material-symbols-outlined text-base text-secondary">home</span>
+              대학 메인홈
+            </a>
+            <span class="text-slate-300">|</span>
+            <a href="https://ipsi.kg.ac.kr" class="hover:text-primary transition-colors">입학안내</a>
+            <span class="text-slate-300">|</span>
+            <a href="https://portal.kg.ac.kr/smartmode/" class="text-secondary font-bold hover:text-primary transition-colors">포털/학사시스템</a>
+          </div>
+
+          <div class="flex items-center text-xs font-bold pl-2 border-l border-slate-300">
+            <button type="button" class="text-primary px-1.5 py-0.5 rounded bg-slate-200">KOR</button>
+            <span class="text-slate-300 mx-1">/</span>
+            <button type="button" class="text-slate-500 hover:text-slate-800 px-1.5 py-0.5" onclick="alert('English service is preparing.');">ENG</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo (클릭 시 대학 메인 index.html로 이동) -->
+      <a href="index.html" class="flex items-center gap-3.5 group" title="대학 메인 홈으로 이동">
+        <div class="w-11 h-11 rounded-xl bg-primary flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-2xl text-accent-neon">sports_golf</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-montserrat text-xl sm:text-2xl font-extrabold tracking-tight text-primary leading-none">
+            한국골프과학기술대학교
+          </span>
+          <span class="font-montserrat text-xs tracking-wider text-slate-500 font-semibold mt-1">
+            KOREA GOLF TECH UNIVERSITY
+          </span>
+        </div>
+      </a>
+
+      <!-- GNB Menu (17px bold, 시원하고 또렷함) -->
+      <nav class="hidden xl:flex items-center gap-8 text-[17px] font-bold text-slate-700">
+        <a href="index.html" class="hover:text-secondary transition-colors flex items-center gap-1">
+          <span class="material-symbols-outlined text-xl">home</span>
+          대학 메인홈
+        </a>
+        
+        <!-- Active Tab: 골프경기지도과학과 -->
+        <div class="relative group py-6">
+          <a href="#about" class="text-secondary font-black inline-flex items-center gap-1 border-b-2 border-secondary pb-1">
+            골프경기지도과학과
+            <span class="material-symbols-outlined text-base">expand_more</span>
+          </a>
+          <!-- Dropdown other depts -->
+          <div class="absolute top-full left-0 hidden group-hover:block w-52 bg-white shadow-xl rounded-xl py-3 border border-slate-100 text-sm font-semibold">
+            <a href="code1.html" class="block px-4 py-2 text-secondary bg-slate-50 font-bold">골프경기지도과학과</a>
+            <a href="https://ipsi.kg.ac.kr/fro_end/html/dep_02/2200.php" class="block px-4 py-2 hover:bg-slate-50 hover:text-secondary">골프AI산업과</a>
+            <a href="https://ipsi.kg.ac.kr/fro_end/html/dep_02/2300.php" class="block px-4 py-2 hover:bg-slate-50 hover:text-secondary">골프코스매니지먼트과</a>
+            <a href="https://ipsi.kg.ac.kr/fro_end/html/dep_02/2400.php" class="block px-4 py-2 hover:bg-slate-50 hover:text-secondary">골프재활헬스케어과</a>
+            <a href="https://ipsi.kg.ac.kr/fro_end/html/dep_02/2600.php" class="block px-4 py-2 hover:bg-slate-50 hover:text-secondary">파크골프지도과</a>
+          </div>
+        </div>
+
+        <a href="#overview" class="hover:text-secondary transition-colors">학과소개</a>
+        <a href="#curriculum" class="hover:text-secondary transition-colors">교육과정 로드맵</a>
+        <a href="#infrastructure" class="hover:text-secondary transition-colors">실습 인프라</a>
+        <a href="#faculty" class="hover:text-secondary transition-colors">교수진 소개</a>
+        <a href="#career" class="hover:text-secondary transition-colors">진로 및 자격증</a>
+      </nav>
+
+      <!-- Right Action CTA -->
+      <div class="flex items-center gap-3">
+        <a href="https://ipsi1.uwayapply.com/2027/coll2/kg/?CHA=2" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 bg-secondary text-white font-bold text-[16px] rounded-full hover:bg-primary transition-all duration-300 shadow-md hover:scale-105" title="수시 원서접수 바로가기">
+          <span>2027 수시 원서접수</span>
+          <span class="material-symbols-outlined text-lg">arrow_forward</span>
+        </a>
+
+        <!-- Home Button -->
+        <a href="index.html" class="w-11 h-11 rounded-xl bg-slate-100 hover:bg-primary hover:text-white text-slate-700 flex items-center justify-center transition-colors" title="대학 메인홈으로 이동">
+          <span class="material-symbols-outlined text-2xl">home</span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button type="button" onclick="document.getElementById('mobile-dept-menu').classList.toggle('hidden')" class="xl:hidden w-11 h-11 rounded-xl flex items-center justify-center text-slate-700 hover:bg-slate-100">
+          <span class="material-symbols-outlined text-2xl">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-dept-menu" class="hidden xl:hidden bg-white border-t border-slate-200 px-6 py-6 space-y-4">
+      <div class="grid grid-cols-2 gap-3 pb-4 border-b border-slate-100">
+        <a href="index.html" class="py-2.5 text-center bg-slate-100 text-primary font-bold rounded-lg text-sm flex items-center justify-center gap-1">
+          <span class="material-symbols-outlined text-base">home</span>
+          메인홈 가기
+        </a>
+        <a href="https://ipsi1.uwayapply.com/2027/coll2/kg/?CHA=2" class="py-2.5 text-center bg-secondary text-white font-bold rounded-lg text-sm">
+          2027 원서접수
+        </a>
+      </div>
+      <div class="flex flex-col space-y-3 font-bold text-lg text-slate-700">
+        <a href="#overview" class="hover:text-secondary">학과소개 및 비전</a>
+        <a href="#curriculum" class="hover:text-secondary">4개년 교육과정</a>
+        <a href="#infrastructure" class="hover:text-secondary">첨단 실습시설</a>
+        <a href="#faculty" class="hover:text-secondary">교수진 소개</a>
+        <a href="#career" class="hover:text-secondary">진로 및 자격증</a>
+        <a href="#inquiry-section" class="hover:text-secondary text-primary">입학상담 및 원서접수</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       2. TOP BREADCRUMB & DEPARTMENT HERO BANNER (글자 크기 대폭 확대)
+       ========================================================================= -->
+  <main class="w-full flex-grow pt-28">
+    
+    <!-- Top Breadcrumb & Hero Area -->
+    <section class="w-full bg-slate-100/70 py-10 border-b border-slate-200/80">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <!-- Breadcrumb Navigation (14px 가독성) -->
+        <nav aria-label="Breadcrumb" class="flex items-center gap-2 text-sm font-semibold text-slate-500 mb-6">
+          <a class="hover:text-primary transition-colors flex items-center gap-1 text-slate-700" href="index.html">
+            <span class="material-symbols-outlined text-base">home</span>홈
+          </a>
+          <span class="material-symbols-outlined text-xs text-slate-400">chevron_right</span>
+          <a class="hover:text-primary transition-colors text-slate-700" href="index.html#departments">학과안내</a>
+          <span class="material-symbols-outlined text-xs text-slate-400">chevron_right</span>
+          <span class="text-primary font-bold">골프경기지도과학과</span>
+        </nav>
+
+        <!-- Department Headline Header -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+          <div class="max-w-4xl">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary text-white rounded-full text-xs sm:text-sm font-bold uppercase tracking-wider mb-4 shadow-sm">
+              <span class="w-2.5 h-2.5 rounded-full bg-accent-neon animate-pulse"></span>
+              DIVISION 01 · PGA/KPGA 공인 투어프로 및 첨단 스포츠지도자 양성
+            </div>
+
+            <!-- Big Title (42px ~ 54px 고가독성) -->
+            <h1 class="font-montserrat text-4xl sm:text-5xl lg:text-[54px] font-black text-primary tracking-tight leading-tight">
+              골프경기지도과학과
+            </h1>
+
+            <!-- Subtitle (18px ~ 22px 편안한 행간) -->
+            <p class="text-xl sm:text-2xl text-slate-700 font-semibold leading-relaxed mt-3">
+              세계 무대를 호령하는 투어프로와 데이터 사이언스 기반 차세대 골프 스포츠과학 지도자의 요람
+            </p>
+          </div>
+
+          <!-- Quick CTAs -->
+          <div class="flex flex-wrap items-center gap-3 self-start lg:self-end">
+            <!-- 2027 모집요강 -->
+            <a class="inline-flex items-center gap-2 px-6 py-3.5 bg-primary text-white font-bold text-base sm:text-lg rounded-xl hover:bg-secondary transition-all shadow-md hover:scale-105" href="https://ipsi.kg.ac.kr/fro_end/html/dep_01/1100.php">
+              <span class="material-symbols-outlined text-2xl">download</span>
+              <span>2027 모집요강 PDF</span>
+            </a>
+            <!-- 학과 입학상담 -->
+            <a class="inline-flex items-center gap-2 px-6 py-3.5 bg-white text-primary font-bold text-base sm:text-lg rounded-xl hover:bg-slate-200 transition-colors shadow-sm border border-slate-200" href="#inquiry-section">
+              <span class="material-symbols-outlined text-2xl">contact_support</span>
+              <span>학과 입학상담</span>
+            </a>
+            <!-- 대학 메인홈 버튼 -->
+            <a class="inline-flex items-center gap-2 px-5 py-3.5 bg-slate-200 hover:bg-primary hover:text-white text-slate-700 font-bold text-base sm:text-lg rounded-xl transition-all" href="index.html" title="대학 메인홈으로 이동">
+              <span class="material-symbols-outlined text-2xl">arrow_back</span>
+              <span>대학 메인홈</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Key Department Stats Bar (글자 크기 대폭 확대: 숫자 48px, 라벨 16px) -->
+        <div class="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6 p-6 sm:p-8 bg-white rounded-3xl shadow-lg border border-slate-200/80">
+          
+          <div class="flex flex-col p-2">
+            <span class="text-sm sm:text-base font-bold text-slate-500">투어프로 배출 / 자격 취득률</span>
+            <div class="flex items-baseline gap-1 mt-2">
+              <span class="font-montserrat text-4xl sm:text-5xl font-black text-primary">92.4</span>
+              <span class="text-2xl font-black text-secondary">%</span>
+            </div>
+            <span class="text-sm font-semibold text-slate-600 mt-1">KPGA·KLPGA·USGTF 합산</span>
+          </div>
+
+          <div class="flex flex-col p-2">
+            <span class="text-sm sm:text-base font-bold text-slate-500">교내 정규 실습 코스</span>
+            <div class="flex items-baseline gap-1 mt-2">
+              <span class="font-montserrat text-4xl sm:text-5xl font-black text-primary">100</span>
+              <span class="text-2xl font-black text-secondary">%</span>
+            </div>
+            <span class="text-sm font-semibold text-slate-600 mt-1">18홀 전용코스 무제한 라운드</span>
+          </div>
+
+          <div class="flex flex-col p-2">
+            <span class="text-sm sm:text-base font-bold text-slate-500">재학생 장학 수혜율</span>
+            <div class="flex items-baseline gap-1 mt-2">
+              <span class="font-montserrat text-4xl sm:text-5xl font-black text-primary">88.5</span>
+              <span class="text-2xl font-black text-secondary">%</span>
+            </div>
+            <span class="text-sm font-semibold text-slate-600 mt-1">우수선수 육성장학 등 연간</span>
+          </div>
+
+          <div class="flex flex-col p-2">
+            <span class="text-sm sm:text-base font-bold text-slate-500">스마트 스윙 랩 솔루션</span>
+            <div class="flex items-baseline gap-1 mt-2">
+              <span class="font-montserrat text-4xl sm:text-5xl font-black text-primary">4D</span>
+              <span class="text-2xl font-black text-secondary">TrackMan</span>
+            </div>
+            <span class="text-sm font-semibold text-slate-600 mt-1">지면반력기 & 3D 모션캡처</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+       3. DEPARTMENT STICKY STRIP
+       ========================================================================= -->
+    <div class="sticky top-20 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between overflow-x-auto py-3">
+        <div class="flex items-center gap-3 text-base sm:text-lg font-bold whitespace-nowrap">
+          <a class="px-5 py-2.5 text-primary bg-slate-100 rounded-xl font-extrabold" href="#overview">학과소개</a>
+          <a class="px-5 py-2.5 text-slate-600 hover:text-primary transition-colors" href="#curriculum">교육과정 로드맵</a>
+          <a class="px-5 py-2.5 text-slate-600 hover:text-primary transition-colors" href="#infrastructure">실습 인프라</a>
+          <a class="px-5 py-2.5 text-slate-600 hover:text-primary transition-colors" href="#faculty">교수진 소개</a>
+          <a class="px-5 py-2.5 text-slate-600 hover:text-primary transition-colors" href="#career">진로 및 자격증</a>
+        </div>
+        <div class="hidden md:flex items-center gap-3 pl-4">
+          <a href="index.html" class="px-4 py-2 bg-emerald-50 text-secondary hover:bg-secondary hover:text-white rounded-xl text-sm font-bold transition-all flex items-center gap-1.5 shrink-0">
+            <span class="material-symbols-outlined text-lg">home</span>
+            메인 홈페이지
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- =========================================================================
+       4. SECTION 1: 학과 비전 및 핵심 역량 (폰트 확대 & 가독성 강화)
+       ========================================================================= -->
+    <section class="w-full py-16 bg-white" id="overview">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Text & Pillars (7 Cols) -->
+          <div class="lg:col-span-7 flex flex-col gap-6">
+            <div class="flex flex-col gap-2">
+              <span class="text-secondary font-bold text-sm sm:text-base uppercase tracking-wider">Vision & Philosophy</span>
+              <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-black text-primary leading-tight">
+                필드 감각과 첨단 스포츠과학의<br/>
+                완벽한 결합을 구현합니다
+              </h2>
+              <p class="text-lg sm:text-xl text-slate-600 leading-relaxed font-medium mt-3">
+                한국골프과학기술대학교 골프경기지도과학과는 단순한 스윙 반복 훈련을 넘어, 바이오메카닉스 스윙 분석, 지면반력 데이터 판독, 코스 매니지먼트 전략 시뮬레이션을 정규 커리큘럼에 이식한 국내 유일의 실전·과학 융합 학과입니다.
+              </p>
+            </div>
+
+            <!-- 3 Pillars Bento (제목 20px, 본문 16px) -->
+            <div class="flex flex-col gap-4 mt-2">
+              
+              <div class="flex items-start gap-5 p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-14 h-14 rounded-2xl bg-primary text-accent-neon flex items-center justify-center shrink-0 shadow-sm">
+                  <span class="material-symbols-outlined text-3xl">sports_golf</span>
+                </div>
+                <div class="flex flex-col">
+                  <h3 class="text-xl sm:text-2xl font-bold text-primary">1. 실전 투어 토너먼트 메카닉스</h3>
+                  <p class="text-base sm:text-lg text-slate-600 font-medium mt-1.5 leading-relaxed">
+                    KPGA/KLPGA 투어프로 자격 취득 대비 코칭과 18홀 필드 숏게임, 기상 및 지형 조건별 실시간 코스 세팅 적응 훈련을 집중 실시합니다.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-5 p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-14 h-14 rounded-2xl bg-secondary text-white flex items-center justify-center shrink-0 shadow-sm">
+                  <span class="material-symbols-outlined text-3xl">query_stats</span>
+                </div>
+                <div class="flex flex-col">
+                  <h3 class="text-xl sm:text-2xl font-bold text-primary">2. AI 스윙 피팅 & 멘탈 바이오피드백</h3>
+                  <p class="text-base sm:text-lg text-slate-600 font-medium mt-1.5 leading-relaxed">
+                    TrackMan 4D 데이터, 비디오 듀얼 앵글 추적기, 지면반력 플레이트를 통한 볼플라이트 과학 분석과 뇌파 안정화 멘탈 훈련을 병행합니다.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-5 p-5 sm:p-6 bg-slate-50 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-14 h-14 rounded-2xl bg-emerald-800 text-accent-neon flex items-center justify-center shrink-0 shadow-sm">
+                  <span class="material-symbols-outlined text-3xl">groups_3</span>
+                </div>
+                <div class="flex flex-col">
+                  <h3 class="text-xl sm:text-2xl font-bold text-primary">3. 글로벌 공인 지도자 및 에이전시 매니지먼트</h3>
+                  <p class="text-base sm:text-lg text-slate-600 font-medium mt-1.5 leading-relaxed">
+                    미국 PGA Class A 라이선스 취득 연계, 스포츠지도사 국가자격 심화, 투어 프로 에이전트 및 아카데미 경영 실무를 체계화합니다.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Right Side: Graphic Card with Photo & Quote (5 Cols) -->
+          <div class="lg:col-span-5 relative">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl bg-primary text-white border border-emerald-900">
+              <div class="relative h-[420px] w-full overflow-hidden">
+                <img class="w-full h-full object-cover object-center" alt="대학 골프 코칭 필드 훈련" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBV2Zium81xPgme-iHgTRcIfxvRoDKaGDz8mKIWCYXPlMTbO3YtsTlnCJlgZT0YON8TEs6DqSKR4Qyh_8EtOR0RIp7b-M3uf7n4qwDxYTcp8J4r2vnxNwidfk_AGmSnxV5mpwMMK66-3DtWdThZ05q6EIgdh5M9w_VZSIsbtInUq8fliarA6SMF0e_6WEGDLWtKWQg_57sJEjNvlT09_6PGxXBO-rbTeOm2xcmUyRGY"/>
+                <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent"></div>
+              </div>
+
+              <div class="p-6 sm:p-8 flex flex-col gap-3 relative -mt-20 bg-primary/95 backdrop-blur-md mx-4 mb-4 rounded-2xl border border-white/10 shadow-xl">
+                <div class="flex items-center gap-2 text-accent-neon text-sm uppercase font-bold">
+                  <span class="material-symbols-outlined text-lg">format_quote</span>
+                  학과장 메시지
+                </div>
+                <p class="text-base sm:text-lg text-emerald-100 italic leading-relaxed">
+                  “감각에만 의존하던 골프 교육의 시대는 끝났습니다. 정밀 데이터와 생체역학에 근거한 과학적 코칭이 세계 무대의 챔피언을 완성합니다.”
+                </p>
+                <div class="flex items-center justify-between pt-3 border-t border-white/10 text-sm sm:text-base">
+                  <span class="font-extrabold text-white text-lg">김현우 주임교수</span>
+                  <span class="text-emerald-300 font-semibold">KPGA 투어프로 · 운동역학 박사</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+       5. SECTION 2: 학년별 맞춤형 실기/이론 커리큘럼 (4개년 원스톱 로드맵)
+       ========================================================================= -->
+    <section class="w-full py-16 bg-slate-50 border-y border-slate-200/80" id="curriculum">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <span class="text-secondary font-bold text-sm sm:text-base uppercase tracking-wider">Academic Roadmap</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-primary tracking-tight mt-1">
+              4개년 원스톱 엘리트 육성 커리큘럼
+            </h2>
+            <p class="text-base sm:text-lg text-slate-600 font-medium mt-2">
+              이론적 과학 지식과 현장 토너먼트 감각을 매 학기 융합 설계한 단계별 로드맵
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 text-sm sm:text-base text-primary bg-emerald-100 px-4 py-2 rounded-full font-bold shadow-sm">
+              <span class="material-symbols-outlined text-lg text-secondary">verified</span>
+              NCAA & KPGA 인증 교육 표준 준수
+            </span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Year 1 -->
+          <div class="flex flex-col bg-white p-6 sm:p-7 rounded-3xl shadow-sm hover:shadow-card-hover transition-all border border-slate-200/80 justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+                <span class="font-montserrat text-3xl font-black text-primary">1학년</span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-slate-100 text-slate-700">기초 역량 & 메커니즘</span>
+              </div>
+              <p class="text-sm font-semibold text-slate-400 mb-4">골프 역학의 과학적 원리와 스윙 기초, 경기 규정 확립</p>
+              
+              <ul class="flex flex-col gap-2.5 text-base font-semibold text-slate-700">
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>골프스윙역학 I (기초 바이오메카닉스)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>정규 숏게임 기초실기 (퍼팅 & 칩샷)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>코스 매니지먼트 기초개론</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>R&A 및 USGA 공인 골프룰 세미나</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>골프선수 맞춤형 스포츠심리학</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-slate-500">
+              * 교내 300yd 드라이빙 레인지 상시 실습
+            </div>
+          </div>
+
+          <!-- Year 2 -->
+          <div class="flex flex-col bg-white p-6 sm:p-7 rounded-3xl shadow-sm hover:shadow-card-hover transition-all border border-slate-200/80 justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+                <span class="font-montserrat text-3xl font-black text-primary">2학년</span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-secondary">심화 실전 & 데이터</span>
+              </div>
+              <p class="text-sm font-semibold text-slate-400 mb-4">디지털 계측 기반 스윙 교정 및 코스 적응 훈련</p>
+              
+              <ul class="flex flex-col gap-2.5 text-base font-semibold text-slate-700">
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>TrackMan 데이터 판독 및 분석 실무</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>지면반력(GRF) 플레이트 활용 스윙 교정</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>18홀 모의 토너먼트 필드 실전 I</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>골프 피지컬 컨디셔닝 (TPI 기초)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>클럽 샤프트 & 헤드 피팅 테크놀로지</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-secondary">
+              * 정기 필드 랭킹전 및 프로선발전 출전
+            </div>
+          </div>
+
+          <!-- Year 3 -->
+          <div class="flex flex-col bg-white p-6 sm:p-7 rounded-3xl shadow-sm hover:shadow-card-hover transition-all border border-slate-200/80 justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+                <span class="font-montserrat text-3xl font-black text-primary">3학년</span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800">전문 투어 & 지도</span>
+              </div>
+              <p class="text-sm font-semibold text-slate-400 mb-4">투어 프로 선발전 대비 및 엘리트 코칭 실습</p>
+              
+              <ul class="flex flex-col gap-2.5 text-base font-semibold text-slate-700">
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>KPGA / KLPGA 실기 테스트 실전 대비</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>고급 숏게임 & 트러블 샷 테크닉</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>골프 아카데미 레슨 프로그래밍 실습</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>토너먼트 전략 및 캐디 매니지먼트</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>생활·전문스포츠지도사 2급 필기/실기</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-slate-500">
+              * 정회원 및 준회원 라이선스 획득 지원
+            </div>
+          </div>
+
+          <!-- Year 4 -->
+          <div class="flex flex-col bg-white p-6 sm:p-7 rounded-3xl shadow-sm hover:shadow-card-hover transition-all border border-slate-200/80 justify-between">
+            <div>
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-slate-100">
+                <span class="font-montserrat text-3xl font-black text-secondary">4학년</span>
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-primary text-white">글로벌 & 커리어</span>
+              </div>
+              <p class="text-sm font-semibold text-slate-400 mb-4">국내외 투어 진출 및 취업·창업 캡스톤</p>
+              
+              <ul class="flex flex-col gap-2.5 text-base font-semibold text-slate-700">
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>글로벌 PGA 투어 교류 및 해외 인턴십</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>골프 에이전시 & 미디어 콘텐츠 제작</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>캡스톤디자인: 골프 아카데미 비즈니스</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>산학연계 골프장 수석프로 인턴십</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="w-2 h-2 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span>취업 매칭 & 투어 스폰서십 포트폴리오</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-100 text-xs font-bold text-secondary">
+              * 4년제 학사학위 취득 및 대학원 연계
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+       6. SECTION 3: 첨단 교육 인프라 & 특화 시설 (고화질 사진 & 상세 설명)
+       ========================================================================= -->
+    <section class="w-full py-16 bg-white" id="infrastructure">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col mb-12">
+          <span class="text-secondary font-bold text-sm sm:text-base uppercase tracking-wider">World-Class Facilities</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-primary tracking-tight mt-1">
+            국내 최고 수준의 골프 특성화 첨단 시설
+          </h2>
+          <p class="text-base sm:text-lg text-slate-600 font-medium mt-2">
+            캠퍼스 전체가 정규 규격 골프장과 최첨단 스윙 연구소로 구성되어 있습니다.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          
+          <!-- Feature 1: AI Motion Capture Lab -->
+          <div class="lg:col-span-2 group overflow-hidden rounded-3xl bg-slate-50 shadow-sm hover:shadow-card-hover transition-all flex flex-col border border-slate-200/80">
+            <div class="h-80 sm:h-96 w-full overflow-hidden relative">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="초정밀 4D 모션 캡처 및 트랙맨 골프 사이언스 랩" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANao3X_nt0XBx8haydQ2CqYrWSQKQrUWP4OePWGpDlvJcemCl6xZisCHMczEGaCvmp1gvzQ-myredwQ_XpVB8rjZZGd-NT_iuHft2wwuDdcNahlvjM4RnbL5WyTLq5u1g-J8UNlty00V2VQtddQUlnG2b5mkD1kPkH697m1TF7CzVYINgoCC74r_TsdlpWfKGDYjXdxoEWq5d5V4fr_sjhT0WlvwdjCunPQVaMjY79"/>
+              <div class="absolute top-4 left-4 bg-primary/90 text-white px-4 py-1.5 rounded-full text-sm font-bold backdrop-blur-sm shadow-md">
+                AI 4D 바이오메카닉스 연구소
+              </div>
+            </div>
+            <div class="p-6 sm:p-8 flex flex-col justify-between flex-grow">
+              <div>
+                <h3 class="text-2xl sm:text-3xl font-black text-primary mb-3">
+                  초정밀 4D 모션 캡처 & 트랙맨 골프 사이언스 랩
+                </h3>
+                <p class="text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
+                  초당 1,000프레임 초고속 적외선 카메라 8대와 양발 압력분포 지면반력기(Force Plate)를 연동하여 스윙 중 체중 이동, 토크, 클럽헤드 궤적을 3차원으로 시각화합니다.
+                </p>
+              </div>
+              <div class="mt-6 flex flex-wrap gap-2.5">
+                <span class="px-3.5 py-1.5 bg-white text-sm font-bold rounded-lg text-primary border border-slate-200">TrackMan 4D Quad</span>
+                <span class="px-3.5 py-1.5 bg-white text-sm font-bold rounded-lg text-primary border border-slate-200">K-VEST 3D 센서</span>
+                <span class="px-3.5 py-1.5 bg-white text-sm font-bold rounded-lg text-primary border border-slate-200">BodiTrak 압력매트</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 2: 18-hole Practice Course -->
+          <div class="group overflow-hidden rounded-3xl bg-slate-50 shadow-sm hover:shadow-card-hover transition-all flex flex-col border border-slate-200/80">
+            <div class="h-80 sm:h-96 w-full overflow-hidden relative">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="18홀 정규 챔피언십 실습 코스" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALKT740yTzLnG_NMMs_byf8ve1bkAUXogT9hQ4F10MNx0xJF7GKDgt5RpaxnlG_69DJlKJWMKnfg01lJS_S-ysJTZdEM2YCbAfLMq_u9GGdHNPHrJ-AzzZHg_vegVxtDY-BHNW9Mwqqxqxjz1z_K54UYFkxzkZSXX4yNrXS4EHKSt5_iRl-NQKFrH7oVvXz3x1TCsDLGCyssZlMufH-wgP-i0VEjvikwZtMSuamFZF"/>
+              <div class="absolute top-4 left-4 bg-primary/90 text-white px-4 py-1.5 rounded-full text-sm font-bold backdrop-blur-sm shadow-md">
+                교내 정규 코스
+              </div>
+            </div>
+            <div class="p-6 sm:p-8 flex flex-col justify-between flex-grow">
+              <div>
+                <h3 class="text-2xl font-black text-primary mb-3">
+                  18홀 정규 챔피언십 실습 코스
+                </h3>
+                <p class="text-base text-slate-600 font-medium leading-relaxed">
+                  PGA 토너먼트 기준에 맞춘 벤트그라스 그린과 다채로운 언듈레이션을 갖춘 실전 필드로 재학생들은 주중 상시 라운드가 가능합니다.
+                </p>
+              </div>
+              <div class="mt-6 flex flex-wrap gap-2.5">
+                <span class="px-3.5 py-1.5 bg-white text-sm font-bold rounded-lg text-primary border border-slate-200">천연잔디 티박스</span>
+                <span class="px-3.5 py-1.5 bg-white text-sm font-bold rounded-lg text-primary border border-slate-200">그린스피드 3.2</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature 3: Short Game Complex -->
+          <div class="group overflow-hidden rounded-3xl bg-slate-50 shadow-sm hover:shadow-card-hover transition-all flex flex-col border border-slate-200/80">
+            <div class="h-64 w-full overflow-hidden relative">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="3,000평 규모 천연잔디 숏게임 콤플렉스" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDe0CoKEjOzDaoQhry2Gghz5RflMzLkKU2Ul6FelmgRkggp1betmjl4OlYwpl7CxXxvF0f8ZvxFYTLe6YR2nuGU1pkGB77PFqzPMtobCiL9s_n2B1HxjJM-drM4LE8uRVPO-PtarBX7NqC9Ny6W7yWoZ7VYpfZcQA4Gksqyh7P6wWix3HCF4ADG8BF66L_qSlcQcf_qSW5tooxxQS4Bno3J2ZemFi267Vr2xd5ovxBe"/>
+              <div class="absolute top-4 left-4 bg-primary/90 text-white px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm">
+                숏게임 특성화
+              </div>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-grow">
+              <h3 class="text-xl sm:text-2xl font-black text-primary">
+                3,000평 규모 천연잔디 숏게임 콤플렉스
+              </h3>
+              <p class="text-base text-slate-600 font-medium mt-2 leading-relaxed">
+                80m 이내의 다양한 어프로치 각도, 깊은 포트 벙커, 고저차 경사면을 완벽히 재현한 숏게임 집중 훈련 구역입니다.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 4: Driving Range -->
+          <div class="group overflow-hidden rounded-3xl bg-slate-50 shadow-sm hover:shadow-card-hover transition-all flex flex-col border border-slate-200/80">
+            <div class="h-64 w-full overflow-hidden relative">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="40타석 자동 오토티업 시뮬레이터 타석" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqBdGkEt_ifO_xNlRDMu9LC1MV4PZf1ZRYYCZgJAUJYjsO0460Jjml9TjeIlY6G2kW_-LQO-PjXYmP-aT_F5ZsMg-XoDW2_qUjKl2T2qSwIHHT3FcQk27aPG1wLJUZLJAymuhGjhHrBFTny8bINnOCJ6bT0JRTM9FBdXKBK_WncR0iV2AItINYIbSZ3O68tQb90d9HTpF5UYDdvYqj3e1YHnfqm9pMdkvLcTasCwyp"/>
+              <div class="absolute top-4 left-4 bg-primary/90 text-white px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm">
+                전천후 드라이빙 레인지
+              </div>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-grow">
+              <h3 class="text-xl sm:text-2xl font-black text-primary">
+                40타석 자동 오토티업 시뮬레이터 타석
+              </h3>
+              <p class="text-base text-slate-600 font-medium mt-2 leading-relaxed">
+                날씨와 계절에 구애받지 않고 365일 샷 메이킹 훈련이 가능한 냉난방 완비 프리미엄 인도어 레인지입니다.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 5: TPI Conditioning Center -->
+          <div class="group overflow-hidden rounded-3xl bg-slate-50 shadow-sm hover:shadow-card-hover transition-all flex flex-col border border-slate-200/80">
+            <div class="h-64 w-full overflow-hidden relative">
+              <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="골프 특화 TPI 피지컬 컨디셔닝 센터" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvecRROaNW0E-7isKKpR5zLzI7vuZKJJrpX7_B7vMrzHT82osp72iBz00oNrK-afsfW3cSoOxl7czr3aL5ukthZCOuZdsfNL695N2xRBk69eRFxj-8NCJ0Aqd2LAN7qsxHpFoGmf3PK-sRmZF53JkChVqb8VB6SrGoM65As-Q7h1FNk-lzsyssQ8yXC0dLz9XpHlyz7kHd609cpHJb7VJKjTTi5N1fQCNw-SQVREak"/>
+              <div class="absolute top-4 left-4 bg-primary/90 text-white px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm">
+                골프 피지컬 트레이닝
+              </div>
+            </div>
+            <div class="p-6 flex flex-col justify-between flex-grow">
+              <h3 class="text-xl sm:text-2xl font-black text-primary">
+                골프 특화 TPI 피지컬 컨디셔닝 센터
+              </h3>
+              <p class="text-base text-slate-600 font-medium mt-2 leading-relaxed">
+                골프 스윙에 최적화된 코어 회전력, 흉추 유연성, 하지 파워 강화를 위한 전문 스포츠 트레이너 상주 전용 체육관입니다.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+       7. SECTION 4: 교수진 소개 (글자 크기 확대 & 선명한 프로필)
+       ========================================================================= -->
+    <section class="w-full py-16 bg-slate-50 border-y border-slate-200/80" id="faculty">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <span class="text-secondary font-bold text-sm sm:text-base uppercase tracking-wider">Distinguished Faculty</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-primary tracking-tight mt-1">
+              투어 실전과 학술 연구를 선도하는 교수진
+            </h2>
+            <p class="text-base sm:text-lg text-slate-600 font-medium mt-2">
+              정규 투어 우승 경력과 스포츠역학 박사 학위를 겸비한 명장들이 직접 사사합니다.
+            </p>
+          </div>
+          <a class="text-primary hover:text-secondary font-bold text-base inline-flex items-center gap-1" href="#inquiry-section">
+            <span>교수진 1:1 상담 신청</span>
+            <span class="material-symbols-outlined text-lg">arrow_forward</span>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Faculty 1 -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-card-hover transition-all flex flex-col border border-slate-200/80">
+            <div class="h-72 w-full overflow-hidden bg-slate-100">
+              <img class="w-full h-full object-cover object-top" alt="김현우 교수" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCkvQGc13a-lkWmhiiI8JBveSpUb_sxVVLSwqbaoiqx_S2A1E3cuc5F2VZRctkTfe_l8QzP163H_SVLYDpVaZqhXZYgUWwmhRRZ-1JWBpR8bdOkl0Mox2xD4k3SN8vSO0jfvMzdhQb-wDidg_LRFr94zdyeOOxF3s-68wzMO60FmGYVfch7E17Z_TreWIMY8WaEyWjPJtKZxG8vpauA5W-UK1IoxAVvHLoJO8Gal9GH"/>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <span class="text-xs font-bold text-secondary uppercase tracking-wider">학과 주임교수</span>
+              <h3 class="text-2xl font-black text-primary mt-1">김현우 교수</h3>
+              <p class="text-sm font-bold text-slate-400 mt-0.5">스포츠생체역학 박사 / KPGA 정회원</p>
+              <div class="mt-4 pt-3 border-t border-slate-100 text-sm sm:text-base font-medium text-slate-600 flex flex-col gap-1.5">
+                <span>• 전 KPGA 코리안투어 프로 활동</span>
+                <span>• 골프 스윙 지면반력 데이터 특허 보유</span>
+                <span>• 한국스포츠산업학회 이사</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Faculty 2 -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-card-hover transition-all flex flex-col border border-slate-200/80">
+            <div class="h-72 w-full overflow-hidden bg-slate-100">
+              <img class="w-full h-full object-cover object-top" alt="박선영 교수" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl_xL410AWztQYU6B7nL9KFXTc0gZ7oChxwuNYICJETP2oeQdJHu9S6b9x6xRYQNMDv7hbJniyh9_3T2G1nuYK3la6HRvq08z5pBK0kg_LUNr1X_KSbtEaKtTqNGaNODZOlskv5GLY4_RDPcPS5w78Chu6aFYGolhU33TnQP_P1oHlpFF7-ARfB9sC_pNzRasrtBa9UZZyQmtSG7ZJayq2GUKbejNaN_JZ7l0IpX0u"/>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <span class="text-xs font-bold text-secondary uppercase tracking-wider">멘탈·코칭 디렉터</span>
+              <h3 class="text-2xl font-black text-primary mt-1">박선영 교수</h3>
+              <p class="text-sm font-bold text-slate-400 mt-0.5">KLPGA 정회원 / 스포츠심리학 박사</p>
+              <div class="mt-4 pt-3 border-t border-slate-100 text-sm sm:text-base font-medium text-slate-600 flex flex-col gap-1.5">
+                <span>• KLPGA 정규투어 3승 경력</span>
+                <span>• 전 골프 국가대표 코칭스태프</span>
+                <span>• 엘리트 골퍼 루틴 바이오피드백 전문가</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Faculty 3 -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-card-hover transition-all flex flex-col border border-slate-200/80">
+            <div class="h-72 w-full overflow-hidden bg-slate-100">
+              <img class="w-full h-full object-cover object-top" alt="Robert Davis 교수" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDU0t4C0y4MU9SypvBLr9Ty_LJa-2paYz2EwmpzVk4Xib6s3deb0DVXyx2qGk-3NbUc4xR0k7QLMhec0oD12px0b-3e7dUtG8_v8sDl4ftHJmUGAJktavTjMcHTWEZ4dbKXxXPR7131_DG0QRSYOFKazzC_mxel0VQjRcs5t27CqhZqbTwoXloGb94YlVeK1_CA-6NfHT14DybL10dRzGqC2bXiGb00uiOJpWYrylPU"/>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <span class="text-xs font-bold text-secondary uppercase tracking-wider">글로벌 투어 초빙교수</span>
+              <h3 class="text-2xl font-black text-primary mt-1">Robert Davis 교수</h3>
+              <p class="text-sm font-bold text-slate-400 mt-0.5">PGA of America Class A Master</p>
+              <div class="mt-4 pt-3 border-t border-slate-100 text-sm sm:text-base font-medium text-slate-600 flex flex-col gap-1.5">
+                <span>• PGA 투어 선수 개인 코치 15년</span>
+                <span>• TrackMan University Master 인증</span>
+                <span>• 미국 주니어 골프 육성 시스템 도입</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Faculty 4 -->
+          <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-card-hover transition-all flex flex-col border border-slate-200/80">
+            <div class="h-72 w-full overflow-hidden bg-slate-100">
+              <img class="w-full h-full object-cover object-top" alt="이정민 교수" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4X-YvqBz8iSDjcStM93hHIh_eBGlbe6rXme6zpRNNdETwtdD9zQeYJ4vSpIncRR8Uz0J-_93J1p_-COZkRdN29DaI3JEjCLL2n1b_jtXFgnbLvuQSt6bFURlh8uhIG3WZiiy-jJs69ElembXiqAG7ProfCrW9yEMFg_POO-m40nwk9j_AuwvGuqSxeAY_tGr8NPb-exANbV8k8lIvyNdtUfBi8ozbogPttsUZI_vc"/>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <span class="text-xs font-bold text-secondary uppercase tracking-wider">산학협력중점 교수</span>
+              <h3 class="text-2xl font-black text-primary mt-1">이정민 교수</h3>
+              <p class="text-sm font-bold text-slate-400 mt-0.5">체육학 석사 / 골프클럽 총괄지배인 출신</p>
+              <div class="mt-4 pt-3 border-t border-slate-100 text-sm sm:text-base font-medium text-slate-600 flex flex-col gap-1.5">
+                <span>• 국내 주요 18홀 회원제 골프장 지배인 역임</span>
+                <span>• KPGA/KLPGA 정규 대회 총괄 디렉팅</span>
+                <span>• 산학 인턴십 & 프로 취업 매칭 전담</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+       8. SECTION 5: 취득 자격증 및 졸업 후 진로 (자격증 & 진로 맵)
+       ========================================================================= -->
+    <section class="w-full py-16 bg-white" id="career">
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+          
+          <!-- License Grid (6 Cols) -->
+          <div class="lg:col-span-6 flex flex-col gap-6">
+            <div>
+              <span class="text-secondary font-bold text-sm sm:text-base uppercase tracking-wider">Certifications</span>
+              <h2 class="text-3xl sm:text-4xl font-black text-primary tracking-tight mt-1">
+                재학 중 공인 자격증 취득 체계
+              </h2>
+              <p class="text-base sm:text-lg text-slate-600 font-medium mt-2">
+                정규 교육과정과 특강을 통해 1인 3개 이상 자격증 취득을 보장합니다.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              
+              <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+                <span class="material-symbols-outlined text-secondary text-3xl">verified</span>
+                <div>
+                  <h4 class="text-lg sm:text-xl font-bold text-primary">KPGA / KLPGA</h4>
+                  <p class="text-sm sm:text-base text-slate-600 font-medium mt-1">정회원(Tour Pro) 및 준회원(Semi Pro) 자격 실기 완벽 대비</p>
+                </div>
+              </div>
+
+              <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+                <span class="material-symbols-outlined text-secondary text-3xl">workspace_premium</span>
+                <div>
+                  <h4 class="text-lg sm:text-xl font-bold text-primary">국가공인 스포츠지도사</h4>
+                  <p class="text-sm sm:text-base text-slate-600 font-medium mt-1">전문스포츠지도사 1·2급 및 생활스포츠지도사 (골프 종목)</p>
+                </div>
+              </div>
+
+              <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+                <span class="material-symbols-outlined text-secondary text-3xl">public</span>
+                <div>
+                  <h4 class="text-lg sm:text-xl font-bold text-primary">USGTF & PGA Class A</h4>
+                  <p class="text-sm sm:text-base text-slate-600 font-medium mt-1">미국골프지도자연맹 국제 티칭 라이선스 및 PGA Class A 연계</p>
+                </div>
+              </div>
+
+              <div class="p-5 bg-slate-50 rounded-2xl border border-slate-200/80 shadow-sm flex items-start gap-4">
+                <span class="material-symbols-outlined text-secondary text-3xl">monitor_heart</span>
+                <div>
+                  <h4 class="text-lg sm:text-xl font-bold text-primary">TPI Certified & TrackMan</h4>
+                  <p class="text-sm sm:text-base text-slate-600 font-medium mt-1">타이틀리스트 퍼포먼스 인스티튜트 피트니스 & 트랙맨 마스터</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Career Sector Bento (6 Cols) -->
+          <div class="lg:col-span-6 flex flex-col gap-6">
+            <div>
+              <span class="text-secondary font-bold text-sm sm:text-base uppercase tracking-wider">Career Paths</span>
+              <h2 class="text-3xl sm:text-4xl font-black text-primary tracking-tight mt-1">
+                골프 산업 전 영역으로의 진출
+              </h2>
+              <p class="text-base sm:text-lg text-slate-600 font-medium mt-2">
+                단순 프로골퍼를 넘어 산업을 이끄는 핵심 리더로 활약합니다.
+              </p>
+            </div>
+
+            <div class="bg-slate-50 p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4">
+              
+              <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+                <div class="flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-xl bg-primary text-white flex items-center justify-center font-bold text-sm">01</span>
+                  <div>
+                    <h4 class="text-lg sm:text-xl font-bold text-primary">프로 골프 투어 선수</h4>
+                    <p class="text-sm text-slate-500 font-medium">PGA, LPGA, KPGA, KLPGA 및 아시안투어 정규 투어프로</p>
+                  </div>
+                </div>
+                <span class="text-sm sm:text-base font-bold text-secondary shrink-0">연 30+명 배출</span>
+              </div>
+
+              <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+                <div class="flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-xl bg-secondary text-white flex items-center justify-center font-bold text-sm">02</span>
+                  <div>
+                    <h4 class="text-lg sm:text-xl font-bold text-primary">골프 아카데미 헤드프로 & 디렉터</h4>
+                    <p class="text-sm text-slate-500 font-medium">대형 골프 아카데미, 회원제 골프클럽 소속 수석 레슨프로</p>
+                  </div>
+                </div>
+                <span class="text-sm sm:text-base font-bold text-secondary shrink-0">취업률 98%</span>
+              </div>
+
+              <div class="flex items-center justify-between pb-4 border-b border-slate-200">
+                <div class="flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-xl bg-slate-200 text-slate-800 flex items-center justify-center font-bold text-sm">03</span>
+                  <div>
+                    <h4 class="text-lg sm:text-xl font-bold text-primary">스포츠 에이전시 & 미디어 방송</h4>
+                    <p class="text-sm text-slate-500 font-medium">JTBC골프, SBS골프 해설위원, 선수 매니지먼트 에이전트</p>
+                  </div>
+                </div>
+                <span class="text-sm sm:text-base font-bold text-slate-500 shrink-0">특성화 진출</span>
+              </div>
+
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                  <span class="w-10 h-10 rounded-xl bg-slate-200 text-slate-800 flex items-center justify-center font-bold text-sm">04</span>
+                  <div>
+                    <h4 class="text-lg sm:text-xl font-bold text-primary">글로벌 골프 브랜드 클럽 피터 & 마케터</h4>
+                    <p class="text-sm text-slate-500 font-medium">타이틀리스트, 캘러웨이, 테일러메이드 등 R&D 및 피팅 전문가</p>
+                  </div>
+                </div>
+                <span class="text-sm sm:text-base font-bold text-slate-500 shrink-0">산학협약 채용</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+       9. SECTION 6: 학과 지원 및 상담 배너 (High Impact Admissions CTA)
+       ========================================================================= -->
+    <section class="w-full bg-primary py-16 text-white relative overflow-hidden" id="inquiry-section">
+      <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#6cf8bb_1px,transparent_1px)] [background-size:24px_24px]"></div>
+      
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 sm:p-12 border border-white/20 flex flex-col lg:flex-row items-center justify-between gap-10">
+          
+          <div class="max-w-3xl flex flex-col gap-4">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-secondary text-white rounded-full text-sm font-bold w-fit">
+              <span class="material-symbols-outlined text-lg">how_to_reg</span>
+              <span>2027학년도 신입생 수시 모집 중</span>
+            </div>
+
+            <!-- Big Impact Headline (36px ~ 48px) -->
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+              당신의 스윙에 과학을 더해<br/>
+              <span class="text-secondary-fixed">세계 정상의 투어 챔피언</span>으로 도약하십시오
+            </h2>
+
+            <p class="text-lg sm:text-xl text-emerald-100 font-medium leading-relaxed mt-1">
+              한국골프과학기술대학교 골프경기지도과학과가 독보적인 인프라와 1:1 맞춤형 투어 코칭으로 당신의 꿈을 현실로 만듭니다. (선수 장학금 및 전원 기숙사 완비)
+            </p>
+            
+            <div class="flex flex-wrap items-center gap-6 pt-3 text-base sm:text-lg font-bold text-accent-neon">
+              <span class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-2xl">call</span>
+                학과 상담: 033-810-1200
+              </span>
+              <span class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-2xl">call</span>
+                입학관리처: 033-810-1020
+              </span>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-4 shrink-0 w-full sm:w-auto">
+            <!-- 2027 온라인 원서접수 -->
+            <a class="inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-secondary-fixed text-primary font-montserrat font-extrabold text-lg rounded-2xl hover:bg-white transition-all shadow-xl hover:scale-105" href="https://ipsi1.uwayapply.com/2027/coll2/kg/?CHA=2">
+              <span class="material-symbols-outlined text-2xl">assignment</span>
+              <span>2027 원서접수 바로가기</span>
+            </a>
+
+            <!-- 대학 메인홈 이동 버튼 -->
+            <a class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/15 hover:bg-white/25 backdrop-blur-md text-white font-bold text-base sm:text-lg rounded-2xl transition-all border border-white/20" href="index.html">
+              <span class="material-symbols-outlined text-2xl">home</span>
+              <span>대학 메인홈으로 이동</span>
+            </a>
+
+            <!-- 카카오톡 실시간 상담 -->
+            <button onclick="alert('골프경기지도과학과 카카오톡 상담 채널(@kgtech_golf)로 연결됩니다.');" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#FEE500] text-[#191919] font-bold text-base sm:text-lg rounded-2xl hover:opacity-95 transition-opacity" type="button">
+              <span class="material-symbols-outlined text-2xl">chat</span>
+              <span>카카오톡 1:1 학과 실시간 상담</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       10. FOOTER (대학 메인 규격 일치)
+       ========================================================================= -->
+  <footer class="w-full bg-slate-900 text-slate-300">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      
+      <div class="flex flex-wrap items-center justify-between gap-6 pb-8 border-b border-slate-800">
+        <div class="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm sm:text-base font-medium">
+          <a href="index.html" class="text-accent-neon font-bold hover:underline flex items-center gap-1">
+            <span class="material-symbols-outlined text-base">home</span>
+            대학 메인홈
+          </a>
+          <span class="text-slate-700">•</span>
+          <a href="https://kg.ac.kr/fro_end/html/dep_01/1600.php" class="hover:text-white transition-colors">개인정보처리방침</a>
+          <span class="text-slate-700">•</span>
+          <a href="https://ipsi.kg.ac.kr" class="hover:text-white transition-colors">입학안내</a>
+          <span class="text-slate-700">•</span>
+          <a href="https://portal.kg.ac.kr/smartmode/" class="hover:text-white transition-colors">학사포털시스템</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <select aria-label="관련학과 바로가기" onchange="if(this.value) location.href=this.value" class="bg-slate-800 text-slate-200 font-semibold text-sm px-4 py-2 rounded-xl border border-slate-700">
+            <option value="">특성화 학과 바로가기</option>
+            <option value="code1.html" selected>골프경기지도과학과</option>
+            <option value="https://ipsi.kg.ac.kr/fro_end/html/dep_02/2200.php">골프AI산업과</option>
+            <option value="https://ipsi.kg.ac.kr/fro_end/html/dep_02/2300.php">골프코스매니지먼트과</option>
+            <option value="https://ipsi.kg.ac.kr/fro_end/html/dep_02/2400.php">골프재활헬스케어과</option>
+            <option value="https://ipsi.kg.ac.kr/fro_end/html/dep_02/2600.php">파크골프지도과</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-8 pt-8">
+        <div class="flex flex-col gap-2 text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p class="font-montserrat text-lg sm:text-xl font-bold text-white">
+            한국골프과학기술대학교 [KGTech] 골프경기지도과학과
+          </p>
+          <p>[25247] 강원특별자치도 횡성군 우천면 하대5길 109 한국골프과학기술대학교 골프관 2층</p>
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-slate-400 font-medium">
+            <span>학과사무실: <strong class="text-slate-200">033-810-1200</strong></span>
+            <span>|</span>
+            <span>입학처: <strong class="text-secondary-fixed">033-810-1020</strong></span>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-500 mt-2 font-montserrat">
+            © 2027 KOREA GOLF TECH UNIVERSITY. ALL RIGHTS RESERVED.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="index.html" class="px-5 py-2.5 bg-slate-800 hover:bg-secondary text-white font-bold text-sm sm:text-base rounded-xl transition-all flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-lg">home</span>
+            대학 메인 홈페이지 이동
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Top Floating Button -->
+  <div class="fixed bottom-6 right-6 z-40">
+    <button type="button" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="w-12 h-12 bg-primary text-white rounded-full shadow-2xl hover:bg-secondary flex items-center justify-center transition-all border-2 border-white/20" title="맨 위로 가기">
+      <span class="material-symbols-outlined text-2xl">arrow_upward</span>
+    </button>
+  </div>
+
+</body>
+</html>
