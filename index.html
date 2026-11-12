@@ -23,6 +23,13 @@
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Motion Animation Library (v14) -->
+  <script src="./node_modules/motion/dist/motion.js"></script>
+  <script>
+    if (!window.Motion) {
+      document.write('<script src="https://cdn.jsdelivr.net/npm/motion@14/dist/motion.js"><\/script>');
+    }
+  </script>
   <script>
     tailwind.config = {
       darkMode: "class",
@@ -160,6 +167,9 @@
   </style>
 </head>
 <body class="min-h-screen flex flex-col font-sans">
+
+  <!-- Motion: Top Scroll Progress Indicator -->
+  <div id="motion-scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-secondary via-emerald-400 to-accent-neon w-full origin-left scale-x-0 z-[60] pointer-events-none"></div>
 
   <!-- =========================================================================
        1. HEADER (글자 크기 확대 & 서브메뉴/링크 구조 완비)
@@ -338,7 +348,7 @@
       <div class="relative z-10 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-28 md:pt-24 md:pb-36 min-h-[720px] flex flex-col justify-between">
         
         <!-- Top Pill Tagline -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        <div id="hero-pill-tagline" class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div class="inline-flex items-center gap-2.5 bg-slate-900/60 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 w-fit shadow-lg">
             <span class="w-2.5 h-2.5 rounded-full bg-accent-neon animate-ping"></span>
             <span class="text-sm md:text-base font-bold text-accent-neon tracking-wide uppercase drop-shadow">
@@ -358,7 +368,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           
           <!-- Left: Big Typography Punch with Crisp Text Visibility -->
-          <div class="lg:col-span-7 flex flex-col gap-4 bg-slate-950/40 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl">
+          <div id="hero-typography" class="lg:col-span-7 flex flex-col gap-4 bg-slate-950/40 backdrop-blur-md p-6 sm:p-8 rounded-3xl border border-white/15 shadow-2xl">
             <div class="flex items-center gap-3">
               <span class="text-lg md:text-2xl text-accent-neon font-bold tracking-tight drop-shadow-md">
                 대한민국 유일의 첨단 골프 특성화 명문
@@ -647,7 +657,7 @@
          3. SMART QUICK DOCK (요청사항: 1.5배 크게 확대 & 큰 글씨 고가독성!)
             수강신청, 등록금 조회 등 메뉴를 1.5배 크게 만들어 중앙에 배치
          ========================================================================= -->
-    <section class="relative z-20 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 -mt-16 sm:-mt-20 w-full mb-16">
+    <section id="quick-dock-section" class="relative z-20 max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 -mt-16 sm:-mt-20 w-full mb-16">
       <div class="bg-white rounded-3xl shadow-dock p-6 sm:p-8 lg:p-10 border border-slate-200/80">
         
         <!-- Dock Header Title (중앙 메뉴 안내) -->
@@ -779,7 +789,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           
           <!-- Dept 1: 골프경기지도과학과 (클릭 시 code1.html 이동) -->
-          <div class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-slate-200/70 hover:border-secondary cursor-pointer" onclick="location.href='code1.html'">
+          <div class="dept-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-slate-200/70 hover:border-secondary cursor-pointer" onclick="location.href='code1.html'">
             <div class="relative h-64 w-full overflow-hidden">
               <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCaEii3Vla-yJPJGfsmYYyYzxmB7GgUwNjvvtYh40iZXkDsTr0HgdXm-3r1DlYklhgMIiSSHZ6bubd09wk7lUwGstso8tZZ65QFz3NYmcTPRWmL8s9rgPHtBFF7n2w8osi3pa46BkU3-pLTtOYP0dqzXFpxA6eocw34Elq5TbcNg18m8AcHfI7SpwCKVKaB3HxH_kVFXPCcGEe_T9CGC4DmaT5ITw0h9EZY1F_SQOaf')"></div>
               <div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent"></div>
@@ -807,7 +817,7 @@
           </div>
 
           <!-- Dept 2: 골프AI산업과 -->
-          <div class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-slate-200/70">
+          <div class="dept-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-slate-200/70">
             <div class="relative h-64 w-full overflow-hidden">
               <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDPOCiQnJ-hSYzngf5DNsY3ylFas0JcA4kChRUQsW33gzVpCJO2mnVDWV9qQU6kH5kRJw0iuk9lp-X-pIIPfUcZ15UKl1JuCnNYqbAYkvSmPYEg0pVJnqsCo1OxYsbORiw26d25SosN6XATNGzwP5dPSQT0r2A75tls4BJyOQvhR5jSWj11HKBkWQH5hkm0c7ASNZZBHzn0K5k6SSkHy5Wn3IOlDjiziVb1wF561UxB')"></div>
               <div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent"></div>
@@ -833,7 +843,7 @@
           </div>
 
           <!-- Dept 3: 골프코스매니지먼트과 -->
-          <div class="group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-slate-200/70">
+          <div class="dept-card group bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-slate-200/70">
             <div class="relative h-64 w-full overflow-hidden">
               <div class="w-full h-full bg-cover bg-center group-hover:scale-105 transition-transform duration-500" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDwPYRwh_QYyQOwSmKx1llixHB5dAU-GPMPnoCo2XQHE1zrmhGe3wcVrZzxVzL-FhCe3cIo4bHWa-HYjuO63h0zsrofocg8I_8847znI32WRN4IPqXYR9GCpTYcQ-XG6jwd5VSMsygpDDLjASetNKq0bED1aV_aSsoiIS-LNSxZoLKnkpeWqGhxiEpoJ3GdPzNTzEVQqnDMyY9goGJvtYW1ilMHzcLPCiR-EealNe41')"></div>
               <div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent"></div>
@@ -859,7 +869,7 @@
           </div>
 
           <!-- Dept 4: 골프재활헬스케어과 -->
-          <div class="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-slate-200/70">
+          <div class="dept-card group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-slate-200/70">
             <div>
               <div class="flex items-center justify-between mb-4">
                 <span class="px-3 py-1 bg-emerald-50 text-secondary font-bold text-xs rounded-lg">선수 컨디셔닝</span>
@@ -879,7 +889,7 @@
           </div>
 
           <!-- Dept 5: 파크골프지도과 -->
-          <div class="group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-slate-200/70">
+          <div class="dept-card group bg-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-slate-200/70">
             <div>
               <div class="flex items-center justify-between mb-4">
                 <span class="px-3 py-1 bg-emerald-50 text-secondary font-bold text-xs rounded-lg">생활 스포츠 문화</span>
@@ -899,7 +909,7 @@
           </div>
 
           <!-- Dept 6: 글로벌골프과 & 전공심화 -->
-          <div class="group bg-primary text-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-emerald-950">
+          <div class="dept-card group bg-primary text-white rounded-3xl p-6 sm:p-7 shadow-sm hover:shadow-card-hover transition-all duration-300 flex flex-col justify-between border border-emerald-950">
             <div>
               <div class="flex items-center justify-between mb-4">
                 <span class="px-3 py-1 bg-secondary text-white font-bold text-xs rounded-lg">국제 과정 & 학사학위</span>
@@ -1451,14 +1461,14 @@
     </button>
     
     <!-- Top Scroll Button -->
-    <button type="button" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="w-11 h-11 bg-white text-primary rounded-full shadow-lg hover:bg-slate-100 flex items-center justify-center transition-all border border-slate-200" title="맨 위로 가기">
+    <button type="button" id="btn-scroll-top" onclick="window.scrollTo({top:0, behavior:'smooth'})" class="w-11 h-11 bg-white text-primary rounded-full shadow-lg hover:bg-slate-100 flex items-center justify-center transition-all border border-slate-200 opacity-0 pointer-events-none" title="맨 위로 가기">
       <span class="material-symbols-outlined text-2xl">arrow_upward</span>
     </button>
   </div>
 
   <!-- Lightbox Modal for screen.png -->
   <div id="screen-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4">
-    <div class="relative max-w-4xl w-full max-h-[92vh] bg-slate-900 rounded-3xl overflow-hidden flex flex-col shadow-2xl border border-slate-700">
+    <div id="screen-modal-dialog" class="relative max-w-4xl w-full max-h-[92vh] bg-slate-900 rounded-3xl overflow-hidden flex flex-col shadow-2xl border border-slate-700">
       
       <!-- Modal Header -->
       <div class="px-6 py-4 bg-slate-800 border-b border-slate-700 flex items-center justify-between text-white">
@@ -1487,7 +1497,7 @@
 
   <!-- Search Modal -->
   <div id="search-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="relative max-w-2xl w-full bg-white rounded-3xl p-6 sm:p-8 shadow-2xl">
+    <div id="search-modal-dialog" class="relative max-w-2xl w-full bg-white rounded-3xl p-6 sm:p-8 shadow-2xl">
       <div class="flex items-center justify-between pb-4 border-b border-slate-100">
         <h3 class="font-bold text-xl text-primary flex items-center gap-2">
           <span class="material-symbols-outlined text-secondary">search</span>
@@ -1553,6 +1563,9 @@
         if (slideIdx === currentHeroIndex) {
           slide.classList.remove('hidden');
           slide.classList.add('active');
+          if (window.Motion) {
+            window.Motion.animate(slide, { opacity: [0.3, 1], scale: [0.98, 1] }, { duration: 0.35, easing: "ease-out" });
+          }
         } else {
           slide.classList.remove('active');
           slide.classList.add('hidden');
@@ -1630,14 +1643,25 @@
 
       // 리스트 아이템 필터링
       const rows = document.querySelectorAll('#notice-list .notice-row');
+      const visibleRows = [];
       rows.forEach(row => {
         const cat = row.getAttribute('data-category');
         if (category === 'all' || cat === category) {
           row.style.display = 'flex';
+          visibleRows.push(row);
         } else {
           row.style.display = 'none';
         }
       });
+
+      // Motion: 탭 변경 시 리스트 순차 페이드인 애니메이션
+      if (window.Motion && visibleRows.length > 0) {
+        window.Motion.animate(
+          visibleRows,
+          { opacity: [0, 1], y: [12, 0] },
+          { delay: window.Motion.stagger(0.04), duration: 0.35, easing: 'ease-out' }
+        );
+      }
     }
 
     // 모바일 메뉴 토글
@@ -1649,9 +1673,19 @@
     // 디자인 시안(screen.png) 모달 제어
     function openScreenModal() {
       const modal = document.getElementById('screen-modal');
+      const dialog = document.getElementById('screen-modal-dialog');
       modal.classList.remove('hidden');
       modal.classList.add('flex');
       document.body.style.overflow = 'hidden';
+
+      // Motion: 모달 스프링 팝업 애니메이션
+      if (window.Motion && dialog) {
+        window.Motion.animate(
+          dialog,
+          { opacity: [0, 1], scale: [0.92, 1] },
+          { duration: 0.35, easing: window.Motion.spring(0.5, 0.2) }
+        );
+      }
     }
 
     function closeScreenModal() {
@@ -1664,9 +1698,19 @@
     // 통합 검색 모달 제어
     function openSearchModal() {
       const modal = document.getElementById('search-modal');
+      const dialog = document.getElementById('search-modal-dialog');
       modal.classList.remove('hidden');
       modal.classList.add('flex');
-      document.getElementById('search-input').focus();
+
+      // Motion: 검색창 스프링 팝업 애니메이션
+      if (window.Motion && dialog) {
+        window.Motion.animate(
+          dialog,
+          { opacity: [0, 1], scale: [0.92, 1], y: [-15, 0] },
+          { duration: 0.35, easing: window.Motion.spring(0.5, 0.2) }
+        );
+      }
+      setTimeout(() => document.getElementById('search-input')?.focus(), 50);
     }
 
     function closeSearchModal() {
@@ -1698,6 +1742,80 @@
         closeScreenModal();
         closeSearchModal();
       }
+    });
+
+    // =========================================================================
+    // Motion (v14) 인터랙션 및 스크롤 애니메이션 초기화
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!window.Motion) return;
+      const { animate, spring, stagger, inView, scroll } = window.Motion;
+
+      // 1. 상단 스크롤 진행 바 (Scroll Progress)
+      const progressBar = document.getElementById('motion-scroll-progress');
+      if (progressBar) {
+        scroll(animate(progressBar, { scaleX: [0, 1] }));
+      }
+
+      // 2. 스크롤 위치에 따른 플로팅 탑 버튼 페이드인/아웃
+      const topBtn = document.getElementById('btn-scroll-top');
+      if (topBtn) {
+        let isVisible = false;
+        scroll(({ y }) => {
+          if (y.current > 350 && !isVisible) {
+            isVisible = true;
+            topBtn.style.pointerEvents = 'auto';
+            animate(topBtn, { opacity: [0, 1], scale: [0.8, 1], y: [15, 0] }, { duration: 0.3 });
+          } else if (y.current <= 350 && isVisible) {
+            isVisible = false;
+            topBtn.style.pointerEvents = 'none';
+            animate(topBtn, { opacity: [1, 0], scale: [1, 0.8], y: [0, 15] }, { duration: 0.2 });
+          }
+        });
+      }
+
+      // 3. 히어로 인트로 진입 애니메이션
+      animate('#hero-pill-tagline', { opacity: [0, 1], y: [-16, 0] }, { duration: 0.6, easing: 'ease-out' });
+      animate('#hero-typography', { opacity: [0, 1], y: [25, 0] }, { duration: 0.8, easing: spring(0.7, 0.2) });
+      animate('#hero-banner-container', { opacity: [0, 1], scale: [0.96, 1], y: [20, 0] }, { duration: 0.85, delay: 0.15, easing: spring(0.7, 0.2) });
+
+      // 4. 퀵 도크(Quick Dock) 스태거 등장 & 아이콘 호버 바운스
+      inView('#quick-dock-section', () => {
+        animate(
+          '.quick-menu-item',
+          { opacity: [0, 1], y: [24, 0], scale: [0.92, 1] },
+          { delay: stagger(0.04), duration: 0.45, easing: spring(0.6, 0.3) }
+        );
+      });
+
+      document.querySelectorAll('.quick-menu-item').forEach(item => {
+        const icon = item.querySelector('.icon-box');
+        if (!icon) return;
+        item.addEventListener('mouseenter', () => {
+          animate(icon, { scale: 1.12, rotate: [0, -3, 3, 0] }, { duration: 0.35, easing: spring(0.5, 0.4) });
+        });
+        item.addEventListener('mouseleave', () => {
+          animate(icon, { scale: 1, rotate: 0 }, { duration: 0.25 });
+        });
+      });
+
+      // 5. 학과 특성화 카드 (Department Cards) 순차 진입 (inView)
+      inView('.dept-card', (info) => {
+        animate(
+          info.target,
+          { opacity: [0, 1], y: [35, 0] },
+          { duration: 0.6, easing: 'ease-out' }
+        );
+      });
+
+      // 6. 공지사항 섹션 스크롤 진입 시 리스트 스태거 애니메이션
+      inView('#notice-section', () => {
+        animate(
+          '#notice-list .notice-row',
+          { opacity: [0, 1], x: [-15, 0] },
+          { delay: stagger(0.05), duration: 0.4, easing: 'ease-out' }
+        );
+      });
     });
   </script>
 </body>

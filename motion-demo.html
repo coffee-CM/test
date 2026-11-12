@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motion 라이브러리 데모</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Motion 라이브러리 (로컬 & CDN fallback) -->
+  <script src="./node_modules/motion/dist/motion.js"></script>
+  <script>
+    if (!window.Motion) {
+      document.write('<script src="https://cdn.jsdelivr.net/npm/motion@14/dist/motion.js"><\/script>');
+    }
+  </script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen py-10 px-4 flex flex-col items-center selection:bg-emerald-500 selection:text-black">
+
+  <!-- 상단 스크롤 진행 바 -->
+  <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 w-full origin-left scale-x-0 z-50"></div>
+
+  <div class="max-w-3xl w-full space-y-8">
+    <!-- 헤더 -->
+    <header id="header-section" class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        Motion (v14) 설치 완료
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+        Motion 핵심 기능 간단 데모
+      </h1>
+      <p class="text-slate-400 text-sm sm:text-base">
+        웹 표준 기반의 가볍고 강력한 애니메이션 라이브러리 <code class="text-emerald-400 font-mono bg-slate-900 px-1.5 py-0.5 rounded">motion</code> 예제입니다.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- 1. 기본 애니메이션 & 스프링 바운스 -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 flex flex-col items-center justify-between gap-6 shadow-xl hover:border-slate-700 transition">
+        <div class="w-full text-left">
+          <h2 class="text-base font-bold text-white flex items-center gap-2">
+            <span class="w-6 h-6 rounded-md bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs font-mono">1</span>
+            스프링 바운스 (클릭)
+          </h2>
+          <p class="text-xs text-slate-400 mt-1">부드러운 스프링 물리 기반 회전 및 스케일</p>
+        </div>
+
+        <div id="spring-box" class="w-28 h-28 rounded-2xl bg-gradient-to-tr from-emerald-500 to-cyan-500 shadow-lg shadow-emerald-500/25 flex flex-col items-center justify-center text-slate-950 font-bold cursor-pointer select-none">
+          <span class="text-sm">클릭해보기</span>
+          <span class="text-xs font-normal opacity-75">Click!</span>
+        </div>
+
+        <div class="w-full flex justify-between items-center text-xs text-slate-500">
+          <span>easing: spring(0.8, 0.5)</span>
+          <span id="click-counter" class="text-emerald-400 font-mono">클릭: 0회</span>
+        </div>
+      </div>
+
+      <!-- 2. 순차 등장 (Stagger) -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between gap-6 shadow-xl hover:border-slate-700 transition">
+        <div class="w-full flex items-center justify-between">
+          <div>
+            <h2 class="text-base font-bold text-white flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-cyan-500/20 text-cyan-400 flex items-center justify-center text-xs font-mono">2</span>
+              순차 등장 (Stagger)
+            </h2>
+            <p class="text-xs text-slate-400 mt-1">지연 시간(delay)을 두고 카드가 차례로 팝업</p>
+          </div>
+          <button id="btn-stagger" class="px-3 py-1.5 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs rounded-lg transition active:scale-95 shadow">
+            다시 재생
+          </button>
+        </div>
+
+        <div class="grid grid-cols-3 gap-3 w-full">
+          <div class="stagger-item bg-slate-800 border border-slate-700 rounded-xl h-20 flex flex-col items-center justify-center gap-1">
+            <span class="text-xl">⚡</span>
+            <span class="text-[11px] text-slate-300 font-medium">Fast</span>
+          </div>
+          <div class="stagger-item bg-slate-800 border border-slate-700 rounded-xl h-20 flex flex-col items-center justify-center gap-1">
+            <span class="text-xl">✨</span>
+            <span class="text-[11px] text-slate-300 font-medium">Smooth</span>
+          </div>
+          <div class="stagger-item bg-slate-800 border border-slate-700 rounded-xl h-20 flex flex-col items-center justify-center gap-1">
+            <span class="text-xl">🪶</span>
+            <span class="text-[11px] text-slate-300 font-medium">Light</span>
+          </div>
+        </div>
+
+        <div class="text-xs text-slate-500 font-mono">
+          delay: stagger(0.12)
+        </div>
+      </div>
+    </div>
+
+    <!-- 코드 안내 카드 -->
+    <div class="bg-slate-900/70 border border-slate-800 rounded-2xl p-6 space-y-4">
+      <h3 class="text-sm font-bold text-slate-200">💡 간단 코드 미리보기</h3>
+      
+      <div class="space-y-2">
+        <p class="text-xs text-slate-400 font-medium">JavaScript / HTML 에서 쓸 때:</p>
+        <pre class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-emerald-300 font-mono overflow-x-auto"><code>import { animate, spring } from "motion";
+
+// 1. 단일 요소 애니메이션
+animate("#box", { rotate: 360, scale: [1, 1.2, 1] }, {
+  easing: spring(0.8, 0.4)
+});
+
+// 2. 여러 요소 순차 등장 (Stagger)
+import { stagger } from "motion";
+animate(".cards", { opacity: [0, 1], y: [20, 0] }, {
+  delay: stagger(0.1)
+});</code></pre>
+      </div>
+
+      <div class="space-y-2 pt-2">
+        <p class="text-xs text-slate-400 font-medium">React 에서 쓸 때 (<code class="text-slate-300">motion/react</code>):</p>
+        <pre class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs text-cyan-300 font-mono overflow-x-auto"><code>import { motion } from "motion/react";
+
+export default function Box() {
+  return (
+    &lt;motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+    &gt;
+      클릭!
+    &lt;/motion.div>
+  );
+}</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const { animate, spring, stagger, scroll } = window.Motion;
+
+    // 1. 헤더 진입 효과
+    animate(
+      "#header-section",
+      { opacity: [0, 1], y: [-20, 0] },
+      { duration: 0.6, easing: "ease-out" }
+    );
+
+    // 2. 스프링 박스 클릭 이벤트
+    const box = document.getElementById("spring-box");
+    const counter = document.getElementById("click-counter");
+    let count = 0;
+    let rotation = 0;
+
+    box.addEventListener("click", () => {
+      count++;
+      rotation += 180;
+      counter.innerText = `클릭: ${count}회`;
+
+      animate(
+        box,
+        {
+          rotate: rotation,
+          scale: [1, 1.25, 0.95, 1],
+        },
+        {
+          duration: 0.7,
+          easing: spring(0.7, 0.5),
+        }
+      );
+    });
+
+    // 3. Stagger 카드 순차 등장
+    function playStagger() {
+      animate(
+        ".stagger-item",
+        {
+          opacity: [0, 1],
+          y: [25, 0],
+          scale: [0.75, 1],
+        },
+        {
+          delay: stagger(0.12),
+          duration: 0.5,
+          easing: spring(0.6, 0.4),
+        }
+      );
+    }
+    playStagger();
+    document.getElementById("btn-stagger").addEventListener("click", playStagger);
+
+    // 4. 상단 스크롤 인디케이터
+    scroll(animate("#scroll-progress", { scaleX: [0, 1] }));
+  </script>
+</body>
+</html>
